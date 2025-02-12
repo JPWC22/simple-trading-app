@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.trading.platform.simple_trading_app.entity.CryptoPrice;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +26,11 @@ public class CryptoPriceParser {
             List<CryptoPrice> prices = new ArrayList<>();
             for (JsonNode node : root) {
                 String symbol = node.get(symbolKey).asText().toUpperCase();
-                double bidPrice = node.get(bidKey).asDouble();
-                double askPrice = node.get(askKey).asDouble();
+                BigDecimal bidPrice = new BigDecimal(node.get(bidKey).asText());
+                BigDecimal askPrice = new BigDecimal(node.get(askKey).asText());
+
+                bidPrice = bidPrice.setScale(2, RoundingMode.HALF_UP);
+                askPrice = askPrice.setScale(2, RoundingMode.HALF_UP);
 
                 prices.add(CryptoPrice.builder()
                         .cryptoPair(symbol)

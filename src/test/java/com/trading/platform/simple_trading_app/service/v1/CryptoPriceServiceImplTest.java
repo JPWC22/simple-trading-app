@@ -9,6 +9,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -32,8 +33,8 @@ class CryptoPriceServiceImplTest {
     void shouldReturnLatestBestPrice_WhenSymbolExists() {
         CryptoPrice expectedPrice = CryptoPrice.builder()
                 .cryptoPair("BTCUSDT")
-                .bidPrice(41000.00)
-                .askPrice(40300.00)
+                .bidPrice(BigDecimal.valueOf(41000.00))
+                .askPrice(BigDecimal.valueOf(40300.00))
                 .updatedAt(LocalDateTime.now())
                 .build();
 

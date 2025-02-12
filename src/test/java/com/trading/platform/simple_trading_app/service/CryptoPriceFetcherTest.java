@@ -9,6 +9,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -39,16 +40,21 @@ class CryptoPriceFetcherTest {
 
     @Test
     void shouldFetchAndStoreAggregatedPrices() {
-        CryptoPrice btcPrice1 = CryptoPrice.builder().cryptoPair("BTCUSDT").bidPrice(40000.00).askPrice(40500.00).updatedAt(LocalDateTime.now()).build();
-        CryptoPrice btcPrice2 = CryptoPrice.builder().cryptoPair("BTCUSDT").bidPrice(41000.00).askPrice(40300.00).updatedAt(LocalDateTime.now()).build();
-        CryptoPrice ethPrice = CryptoPrice.builder().cryptoPair("ETHUSDT").bidPrice(2600.00).askPrice(2550.00).updatedAt(LocalDateTime.now()).build();
+        CryptoPrice btcPrice1 = CryptoPrice.builder().cryptoPair("BTCUSDT").bidPrice(BigDecimal.valueOf(40000.00))
+                .askPrice(BigDecimal.valueOf(40500.00)).updatedAt(LocalDateTime.now()).build();
+        CryptoPrice btcPrice2 = CryptoPrice.builder().cryptoPair("BTCUSDT").bidPrice(BigDecimal.valueOf(41000.00))
+                .askPrice(BigDecimal.valueOf(40300.00)).updatedAt(LocalDateTime.now()).build();
+        CryptoPrice ethPrice = CryptoPrice.builder().cryptoPair("ETHUSDT").bidPrice(BigDecimal.valueOf(2600.00))
+                .askPrice(BigDecimal.valueOf(2550.00)).updatedAt(LocalDateTime.now()).build();
 
         List<CryptoPrice> fetchedPrices1 = List.of(btcPrice1);
         List<CryptoPrice> fetchedPrices2 = List.of(btcPrice2, ethPrice);
 
         List<CryptoPrice> aggregatedPrices = List.of(
-                CryptoPrice.builder().cryptoPair("BTCUSDT").bidPrice(41000.00).askPrice(40300.00).updatedAt(LocalDateTime.now()).build(),
-                CryptoPrice.builder().cryptoPair("ETHUSDT").bidPrice(2600.00).askPrice(2550.00).updatedAt(LocalDateTime.now()).build()
+                CryptoPrice.builder().cryptoPair("BTCUSDT").bidPrice(BigDecimal.valueOf(41000.00))
+                                .askPrice(BigDecimal.valueOf(40300.00)).updatedAt(LocalDateTime.now()).build(),
+                CryptoPrice.builder().cryptoPair("ETHUSDT").bidPrice(BigDecimal.valueOf(2600.00))
+                                .askPrice(BigDecimal.valueOf(2550.00)).updatedAt(LocalDateTime.now()).build()
         );
 
         // Mock behavior for multiple providers
@@ -69,12 +75,12 @@ class CryptoPriceFetcherTest {
         assertEquals(2, savedPrices.size());
 
         assertEquals("BTCUSDT", savedPrices.get(0).getCryptoPair());
-        assertEquals(41000.00, savedPrices.get(0).getBidPrice());
-        assertEquals(40300.00, savedPrices.get(0).getAskPrice());
+        assertEquals(BigDecimal.valueOf(41000.00), savedPrices.get(0).getBidPrice());
+        assertEquals(BigDecimal.valueOf(40300.00), savedPrices.get(0).getAskPrice());
 
         assertEquals("ETHUSDT", savedPrices.get(1).getCryptoPair());
-        assertEquals(2600.00, savedPrices.get(1).getBidPrice());
-        assertEquals(2550.00, savedPrices.get(1).getAskPrice());
+        assertEquals(BigDecimal.valueOf(2600.00), savedPrices.get(1).getBidPrice());
+        assertEquals(BigDecimal.valueOf(2550.00), savedPrices.get(1).getAskPrice());
 
         verify(cryptoPriceRepository, times(1)).saveAll(any());
     }

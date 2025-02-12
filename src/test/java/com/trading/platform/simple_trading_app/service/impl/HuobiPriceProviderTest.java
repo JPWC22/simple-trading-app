@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
@@ -45,8 +46,10 @@ class HuobiPriceProviderTest {
                 .thenReturn(ResponseEntity.ok(huobiJson));
 
         List<CryptoPrice> mockPrices = List.of(
-                CryptoPrice.builder().cryptoPair("BTCUSDT").bidPrice(40000.00).askPrice(40500.00).build(),
-                CryptoPrice.builder().cryptoPair("ETHUSDT").bidPrice(2500.00).askPrice(2550.00).build()
+                CryptoPrice.builder().cryptoPair("BTCUSDT").bidPrice(BigDecimal.valueOf(40000.00))
+                        .askPrice(BigDecimal.valueOf(40500.00)).build(),
+                CryptoPrice.builder().cryptoPair("ETHUSDT").bidPrice(BigDecimal.valueOf(2500.00))
+                        .askPrice(BigDecimal.valueOf(2550.00)).build()
         );
 
         when(cryptoPriceParser.parse(huobiJson, "symbol", "bid", "ask", true))

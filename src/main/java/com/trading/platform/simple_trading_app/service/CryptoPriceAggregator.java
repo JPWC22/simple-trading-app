@@ -37,8 +37,8 @@ public class CryptoPriceAggregator {
     private CryptoPrice getBestPrice(CryptoPrice existing, CryptoPrice newEntry) {
         return CryptoPrice.builder()
                 .cryptoPair(existing.getCryptoPair())
-                .bidPrice(Math.max(existing.getBidPrice(), newEntry.getBidPrice()))
-                .askPrice(Math.min(existing.getAskPrice(), newEntry.getAskPrice()))
+                .bidPrice(existing.getBidPrice().max(newEntry.getBidPrice()))
+                .askPrice(existing.getAskPrice().min(newEntry.getAskPrice()))
                 .updatedAt(existing.getUpdatedAt().isAfter(newEntry.getUpdatedAt()) ? existing.getUpdatedAt() : newEntry.getUpdatedAt())
                 .build();
     }
