@@ -2,6 +2,7 @@ package com.trading.platform.simple_trading_app.service.v1;
 
 import com.trading.platform.simple_trading_app.entity.CryptoPrice;
 import com.trading.platform.simple_trading_app.repository.CryptoPriceRepository;
+import com.trading.platform.simple_trading_app.service.v1.Impl.CryptoPriceServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -14,13 +15,13 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class CryptoPriceServiceTest {
+class CryptoPriceServiceImplTest {
 
     @Mock
     private CryptoPriceRepository cryptoPriceRepository;
 
     @InjectMocks
-    private CryptoPriceService cryptoPriceService;
+    private CryptoPriceServiceImpl cryptoPriceServiceImpl;
 
     @BeforeEach
     void setUp() {
@@ -39,7 +40,7 @@ class CryptoPriceServiceTest {
         when(cryptoPriceRepository.findTopByCryptoPairOrderByUpdatedAtDesc("BTCUSDT"))
                 .thenReturn(Optional.of(expectedPrice));
 
-        CryptoPrice result = cryptoPriceService.getLatestBestPrice("BTCUSDT");
+        CryptoPrice result = cryptoPriceServiceImpl.getLatestBestPrice("BTCUSDT");
 
         assertEquals(expectedPrice, result);
     }
@@ -50,7 +51,7 @@ class CryptoPriceServiceTest {
                 .thenReturn(Optional.empty());
 
         RuntimeException exception = assertThrows(RuntimeException.class, () ->
-                cryptoPriceService.getLatestBestPrice("ETHUSDT"));
+                cryptoPriceServiceImpl.getLatestBestPrice("ETHUSDT"));
 
         assertEquals("Price data not found for symbol: ETHUSDT", exception.getMessage());
     }
