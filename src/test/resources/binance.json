@@ -1,0 +1,30 @@
+[
+  {
+    "symbol": "GASBTC",
+    "bidPrice": "0.00004050",
+    "bidQty": "477.20000000",
+    "askPrice": "0.00004070",
+    "askQty": "76.60000000"
+  },
+  {
+    "symbol": "BNBETH",
+    "bidPrice": "0.24470000",
+    "bidQty": "2.12300000",
+    "askPrice": "0.24490000",
+    "askQty": "4.39100000"
+  },
+  {
+    "symbol": "BTCUSDT",
+    "bidPrice": "96166.32000000",
+    "bidQty": "5.54340000",
+    "askPrice": "96166.33000000",
+    "askQty": "0.51726000"
+  },
+  {
+    "symbol": "ETHUSDT",
+    "bidPrice": "2615.99000000",
+    "bidQty": "109.96800000",
+    "askPrice": "2616.00000000",
+    "askQty": "1.68600000"
+  }
+]
