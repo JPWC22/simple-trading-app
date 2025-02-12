@@ -1,0 +1,34 @@
+{
+  "data": [
+    {
+      "symbol": "sylousdt",
+      "bid": 0.000625,
+      "bidSize": 26585.394,
+      "ask": 0.000629,
+      "askSize": 100145.1584
+    },
+    {
+      "symbol": "zigusdt",
+      "bid": 0.093404,
+      "bidSize": 160.0401,
+      "ask": 0.094048,
+      "askSize": 146.2401
+    },
+    {
+      "symbol": "btcusdt",
+      "bid": 96150.34,
+      "bidSize": 160.0401,
+      "ask": 96150.35,
+      "askSize": 146.1401
+    },
+    {
+      "symbol": "ethusdc",
+      "bid": 2615.63,
+      "bidSize": 130.0401,
+      "ask": 2615.64,
+      "askSize": 126.3461
+    }
+  ],
+  "status": "ok",
+  "ts": 1739325656456
+}
