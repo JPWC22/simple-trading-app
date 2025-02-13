@@ -47,7 +47,11 @@ A demo trading platform for Bitcoin and Ethereum. This app provides basic functi
     ```bash
     http://localhost:8080/swagger-ui/index.html
     ```
-
+5. **Information to use with H2 database:**
+   ```bash
+      username: "john"
+      crypto symbols: "BTCUSDT" or "ETHUSDT"
+   ```
 ## Tech Stack
 
 - **Spring Boot 3.4.2**
