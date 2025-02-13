@@ -2,6 +2,8 @@ package com.trading.platform.simple_trading_app.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -23,10 +25,10 @@ public class CryptoPrice {
     private String cryptoPair;
 
     @Column(nullable = false)
-    private Double bidPrice;
+    private BigDecimal bidPrice;
 
     @Column(nullable = false)
-    private Double askPrice;
+    private BigDecimal askPrice;
 
     @Column(nullable = false)
     private LocalDateTime updatedAt;

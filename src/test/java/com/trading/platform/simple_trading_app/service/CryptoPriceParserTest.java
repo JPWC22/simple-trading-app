@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
@@ -39,8 +40,8 @@ class CryptoPriceParserTest {
                 .findFirst().orElse(null);
 
         assertNotNull(btc);
-        assertEquals(96150.34, btc.getBidPrice());
-        assertEquals(96150.35, btc.getAskPrice());
+        assertEquals(BigDecimal.valueOf(96150.34), btc.getBidPrice());
+        assertEquals(BigDecimal.valueOf(96150.35), btc.getAskPrice());
     }
 
     @Test
@@ -58,8 +59,8 @@ class CryptoPriceParserTest {
                 .findFirst().orElse(null);
 
         assertNotNull(eth);
-        assertEquals(2615.99, eth.getBidPrice());
-        assertEquals(2616.00, eth.getAskPrice());
+        assertEquals(BigDecimal.valueOf(2615.99), eth.getBidPrice());
+        assertEquals(BigDecimal.valueOf(2616.13), eth.getAskPrice());
     }
 }
 

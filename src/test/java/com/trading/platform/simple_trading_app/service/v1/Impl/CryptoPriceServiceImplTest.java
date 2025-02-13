@@ -1,14 +1,14 @@
-package com.trading.platform.simple_trading_app.service.v1;
+package com.trading.platform.simple_trading_app.service.v1.Impl;
 
 import com.trading.platform.simple_trading_app.entity.CryptoPrice;
 import com.trading.platform.simple_trading_app.repository.CryptoPriceRepository;
-import com.trading.platform.simple_trading_app.service.v1.Impl.CryptoPriceServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -32,8 +32,8 @@ class CryptoPriceServiceImplTest {
     void shouldReturnLatestBestPrice_WhenSymbolExists() {
         CryptoPrice expectedPrice = CryptoPrice.builder()
                 .cryptoPair("BTCUSDT")
-                .bidPrice(41000.00)
-                .askPrice(40300.00)
+                .bidPrice(BigDecimal.valueOf(41000.00))
+                .askPrice(BigDecimal.valueOf(40300.00))
                 .updatedAt(LocalDateTime.now())
                 .build();
 
