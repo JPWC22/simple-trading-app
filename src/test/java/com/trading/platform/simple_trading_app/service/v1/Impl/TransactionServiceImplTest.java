@@ -3,6 +3,7 @@ package com.trading.platform.simple_trading_app.service.v1.Impl;
 import com.trading.platform.simple_trading_app.entity.User;
 import com.trading.platform.simple_trading_app.entity.TransactionHistory;
 import com.trading.platform.simple_trading_app.repository.TransactionHistoryRepository;
+import com.trading.platform.simple_trading_app.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -18,13 +19,15 @@ class TransactionServiceImplTest {
 
     @Mock
     private TransactionHistoryRepository transactionHistoryRepository;
+    @Mock
+    private UserRepository userRepository;
 
     private TransactionServiceImpl transactionService;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        transactionService = new TransactionServiceImpl(transactionHistoryRepository);
+        transactionService = new TransactionServiceImpl(transactionHistoryRepository, userRepository);
     }
 
     @Test
