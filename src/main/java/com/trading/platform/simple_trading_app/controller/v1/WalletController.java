@@ -3,7 +3,6 @@ package com.trading.platform.simple_trading_app.controller.v1;
 import com.trading.platform.simple_trading_app.entity.Wallet;
 import com.trading.platform.simple_trading_app.service.v1.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,11 +20,6 @@ public class WalletController {
 
     @GetMapping("/balances/{username}")
     public ResponseEntity<Set<Wallet>> retrieveBalance(@PathVariable String username) {
-        try {
-            Set<Wallet> balances = walletService.retrieveBalances(username);
-            return new ResponseEntity<>(balances, HttpStatus.OK);
-        } catch (RuntimeException ex) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-        }
+        return ResponseEntity.ok(walletService.retrieveBalances(username));
     }
 }
