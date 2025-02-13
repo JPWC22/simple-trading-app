@@ -2,6 +2,7 @@ package com.trading.platform.simple_trading_app.service.v1.Impl;
 
 import com.trading.platform.simple_trading_app.entity.User;
 import com.trading.platform.simple_trading_app.entity.Wallet;
+import com.trading.platform.simple_trading_app.repository.UserRepository;
 import com.trading.platform.simple_trading_app.repository.WalletRepository;
 import com.trading.platform.simple_trading_app.service.v1.WalletService;
 import lombok.AllArgsConstructor;
@@ -10,11 +11,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.Optional;
+import java.util.Set;
 
 @AllArgsConstructor
 @Service
 public class WalletServiceImpl implements WalletService {
     private final WalletRepository walletRepository;
+    private final UserRepository userRepository;
 
     @Override
     @Transactional
@@ -37,5 +40,13 @@ public class WalletServiceImpl implements WalletService {
         }
         wallet.setBalance(newBalance);
         walletRepository.save(wallet);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Set<Wallet> retrieveBalances(String username) {
+        User user = userRepository.findByUsername(username).orElseThrow(() ->
+                new RuntimeException("User not found: " + username));
+        return walletRepository.findByUser(user);
     }
 }

@@ -2,6 +2,7 @@ package com.trading.platform.simple_trading_app.service.v1.Impl;
 
 import com.trading.platform.simple_trading_app.entity.User;
 import com.trading.platform.simple_trading_app.entity.Wallet;
+import com.trading.platform.simple_trading_app.repository.UserRepository;
 import com.trading.platform.simple_trading_app.repository.WalletRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,12 +22,15 @@ class WalletServiceImplTest {
     @Mock
     private WalletRepository walletRepository;
 
+    @Mock
+    private UserRepository userRepository;
+
     private WalletServiceImpl walletService;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        walletService = new WalletServiceImpl(walletRepository);
+        walletService = new WalletServiceImpl(walletRepository, userRepository);
     }
 
     @Test
