@@ -1,8 +1,7 @@
-package com.trading.platform.simple_trading_app.service.v1;
+package com.trading.platform.simple_trading_app.service.v1.Impl;
 
 import com.trading.platform.simple_trading_app.entity.CryptoPrice;
 import com.trading.platform.simple_trading_app.repository.CryptoPriceRepository;
-import com.trading.platform.simple_trading_app.service.v1.Impl.CryptoPriceServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

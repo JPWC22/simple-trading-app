@@ -1,7 +1,10 @@
 package com.trading.platform.simple_trading_app.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -18,6 +21,8 @@ public class User {
 
     private String username;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private Wallet wallet;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private Set<Wallet> wallets;  // One user can have multiple wallets
+
 }
